@@ -56,7 +56,11 @@ class QuestionsController < ApplicationController
   end
 
   def search_question
-    @questions = Question.where(['title LIKE ?', "%#{params[:search].downcase}%"])
+		if params[:search].length >= 3
+			@questions = Question.where("LOWER(questions.title) LIKE LOWER('%#{params[:search]}%')")
+    else
+			@questions = []
+    end
   end
 
   private

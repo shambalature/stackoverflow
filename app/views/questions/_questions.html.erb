@@ -10,14 +10,18 @@
       <h4 class="col-sm-4"><%= @questions.count > 1 ? "#{@questions.count} questions" : "#{@questions.count} question" %></h4>
     </div>
     <div class="row">
-      <% @questions.each do |question| %>
-        <div class="col-sm-4">
-          <%= "#{question.answers.count} Answers" %>
-        </div>
-        <div class="col-sm-8">
-          <%= link_to question.title, question_path(question.id) %>
-          <br>
-        </div>
+      <% if @questions.present? %>
+        <% @questions.each do |question| %>
+          <div class="col-sm-4">
+            <%= "#{question.answers.count} Answers" %>
+          </div>
+          <div class="col-sm-8">
+            <%= link_to question.title, question_path(question.id) %>
+            <br>
+          </div>
+        <% end %>
+      <% else %>
+        <h1> Please search with 3 letters.</h1>
       <% end %>
     </div>
   </div>

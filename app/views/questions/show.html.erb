@@ -11,6 +11,10 @@
       <strong><%= @answers.count > 1 ? "#{@answers.count} Answers" : "#{@answers.count} Answer"%></strong><br><br>
       <% @answers.map do |answer| %>
         <div><%= answer.sanitize_title %></div><br>
+        <div class="text-center">
+          <p>answerd <%= answer&.created_at.strftime("%b %d' %y") if answer&.created_at.present? %></p>
+          <%= answer&.user&.try(:fullname) %>
+        </div>
         <hr>
       <% end %>
     </div>
