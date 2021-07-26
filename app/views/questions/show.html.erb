@@ -1,6 +1,19 @@
-<b><%= @question.title %></b>
-<br>
-<p><%= @answers.count > 1 ? "#{@answers.count} Answers" : "#{@answers.count} Answer"%></p>
-<% @answers.each do |answer| %>
-  <p><%= answer.title %></p><br>
-<% end %>
+<div class="text-center">
+  <b>Q. <%= @question.title %></b>
+  <br>
+  <div class="text-start">
+    <p><%= @answers.count > 1 ? "#{@answers.count} Answers" : "#{@answers.count} Answer"%></p>
+    <% @answers.each do |answer| %>
+      <p>A. <%= answer.sanitize_title %></p><br>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-6 col-md-offset-4 col-md-4">
+      <%= form_with url: question_answers_path(@question.id), method: :post do |form| %>
+        <%= form.cktext_area :title, id: 'answer', ckeditor: { language: 'uk'} %>
+        <%= form.submit "Create Answer", class: "btn btn-success"%>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'Back', questions_path %>
+</div>

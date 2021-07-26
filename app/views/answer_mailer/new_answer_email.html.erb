@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>You got a new answer from <%= @answer.user.fullname %>!</p>
+    <p>Question created by: <%= @answer.question.user.fullname %></p>
+    <p>Question: <%= @answer.question.title %></p>
+    <p>Answer: <%= @answer.sanitize_title %></p>
+    <p>Answered user's Email Id: <%= @answer.user.email %></p>
+  </body>
+</html>

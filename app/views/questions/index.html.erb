@@ -1,15 +1,10 @@
-<h1>Search Questions</h1>
-<%= form_tag(search_question_path, method: :get, remote: true) do %>
-  <%= text_field_tag(:search, params[:search])%>
-  <%= submit_tag("Search")%>
-<% end %>
-<br>
-<div id= "search_elements"></div>
-
-<h2>Questions/Answers</h2>
-
-<% @questions.each do |question| %>
-  <button class="accordion"><%= question.title %></button>
-  <%= link_to "Answers", question_path(question.id) %>
-  <br><br>
-<% end %>
+<div class="container">
+  <div class="text-center">
+    <% if current_user.present? %>
+      <h2>Questions/Answers</h2>
+      <%= render "/questions/questions"%>
+    <% else %>
+      <%= render "/questions/questions"%>
+    <% end %>
+  </div>
+</div>
