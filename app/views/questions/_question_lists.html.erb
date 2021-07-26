@@ -1,0 +1,8 @@
+<div>
+  <% @question_lists.each do |question| %>
+    <div>
+      <b><%= link_to question.title, "/questions/#{question.id}" %></b>
+    </div>
+    <br>
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+<b><%= @question.title %></b>
+<br>
+<p><%= @answers.count > 1 ? "#{@answers.count} Answers" : "#{@answers.count} Answer"%></p>
+<% @answers.each do |answer| %>
+  <p><%= answer.title %></p><br>
+<% end %>

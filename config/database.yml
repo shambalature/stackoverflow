@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: trust
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  # database: crm4beauty_development
+  database: stackoverflow_devlopment
+
+test: &test
+  <<: *default
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  database: stackoverflow_test
+
+production:
+  <<: *default
+  database: stackoverflow_production
