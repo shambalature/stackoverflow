@@ -2,7 +2,7 @@
 
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[show edit update destroy]
-
+  before_action :set_question, only: %i[show create edit update destroy]
   # GET /answers or /answers.json
   def index
     @answers = Answer.all
@@ -13,15 +13,17 @@ class AnswersController < ApplicationController
 
   # GET /answers/new
   def new
-    @answer = Answer.new
+    @answer = @question.answer.new
   end
 
   # GET /answers/1/edit
-  def edit; end
+  def edit
+    @answer = @question.answers.find_by(id: params[:id])
+  end
 
   # POST /answers or /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @answer = @question.answers.new(answer_params)
     @answer.user_id = if current_user.present?
                         current_user.id
                       else
@@ -40,7 +42,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1 or /answers/1.json
   def update
     respond_to do |format|
-      if @answer.update(answer_params)
+      if @question.answers.update(answer_params)
 
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
       else
@@ -51,7 +53,7 @@ class AnswersController < ApplicationController
 
   # DELETE /answers/1 or /answers/1.json
   def destroy
-    @answer.destroy
+    @question.answers.find_by(id: params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
       format.json { head :no_content }
@@ -61,6 +63,10 @@ class AnswersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
   def set_answer
     @answer = Answer.find(params[:id])
   end

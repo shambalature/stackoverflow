@@ -57,7 +57,7 @@ class QuestionsController < ApplicationController
   end
 
   def search_question
-    @question_lists = Question.where(['title LIKE ?', "%#{params[:search]}%"])
+    @questions = Question.where(['title LIKE ?', "%#{params[:search].downcase}%"])
   end
 
   private
@@ -69,6 +69,6 @@ class QuestionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_params
-    params.fetch(:question, {}).permit(:title)
+    params.fetch(:question, {}).permit(:title, :description)
   end
 end

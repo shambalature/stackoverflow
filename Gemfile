@@ -31,7 +31,6 @@ gem 'bootstrap-sass', '~> 3.4'
 gem 'ckeditor'
 gem 'devise'
 gem 'letter_opener', group: :development
-gem 'will_paginate', '~> 3.1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

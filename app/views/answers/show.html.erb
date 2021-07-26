@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="text-center">	
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @answer.title %>
-</p>
+	<p>
+	  <strong>Title:</strong>
+	  <%= @answer.title %>
+	</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @answer.user_id %>
-</p>
+	<p>
+	  <strong>User:</strong>
+	  <%= @answer.user_id %>
+	</p>
 
-<p>
-  <strong>Question:</strong>
-  <%= @answer.question_id %>
-</p>
+	<p>
+	  <strong>Question:</strong>
+	  <%= @answer.question_id %>
+	</p>
 
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+	<%= link_to 'Edit', edit_answer_path(@answer) %> |
+	<%= link_to 'Back', answers_path %>
+</div>
+</div>
