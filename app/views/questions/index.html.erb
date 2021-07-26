@@ -10,6 +10,6 @@
 
 <% @questions.each do |question| %>
   <button class="accordion"><%= question.title %></button>
-  <%= link_to "Answers", answers_question_path(question) %>
+  <%= link_to "Answers", question_path(question.id) %>
   <br><br>
 <% end %>
